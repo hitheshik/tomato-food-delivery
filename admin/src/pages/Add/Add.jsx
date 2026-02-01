@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import './Add.css'
 import { assets } from '../../assets/assets';
 import axios from "axios"
-const Add = () => {
+import {toast} from 'react-toastify'
+
+const Add = ({url}) => {
 
     
     const url="http://localhost:4000";
@@ -90,5 +92,5 @@ const Add = () => {
     </div>
     <button type='submit' className='add-btn'>ADD</button>
 
-  
+}  
 export default Add

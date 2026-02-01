@@ -8,7 +8,16 @@ const Navbar = (setShowLogin) => {
     const[menu,setMenu] = useState("menu");
 
 
-    const{getTotalCartAmount}=useContext(StoreContext)
+    const{getTotalCartAmount,token,getToken}=useContext(StoreContext)
+
+    const navigate=useNavigate();
+
+    const logout=()=>{
+          localStorage.removeItem("token");
+          setToken("");
+          navigate("/");
+
+    }
   return (
     <div className='navbar'>
        <Link to='/'></Link>img src={assets.logo}alt=""className="logo" />
@@ -26,8 +35,17 @@ const Navbar = (setShowLogin) => {
         </div>
         <button onClick={()=>setShowLogin(true)}>sign in</button>
        </div>
+       {!token?<button onClick ={()=>setShowLogin(true)}>sign in</button>
+       :<div className = 'navbar-profile'>
+          <img src={assets.profile_icon}alt=""/>
+          <ul className="nav-profile-dropdown">
+            <li onClick={()=>navigate('/myorders')}><img src={assets.bag_icon}alt=""/><p>Orders</p></li>
+            <hr/>
+            <li onClick={logout}><img src={assets.logout_icon}alt="" />/<p>Logout</p></li>
+
+          </ul>
     </div>
   )
-}
+        
 
 export default Navbar
